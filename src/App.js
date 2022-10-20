@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import {ProgressBar, StepOne, StepTwo, StepThree} from "./components";
+import { useData } from './dataContext';
 
 function App() {
+
+  const { dataState } = useData();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form data-multi-step className="multi-step-form" id="multi-step-form">
+      <ProgressBar />
+      <StepOne isActive={dataState.step1.active} />
+      <StepTwo isActive={dataState.step2.active} />
+      <StepThree isActive={dataState.step3.active} />
+    </form>
     </div>
   );
 }
